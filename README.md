@@ -1,4 +1,4 @@
 easily
 ======
 
-some funny code . 
+my code library 
