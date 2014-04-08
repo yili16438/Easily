@@ -35,6 +35,8 @@
 			<source-path path-element="F:/My Documents/SVN/as3commons_src/as3-commons-collections/src"/>
 			<source-path path-element="F:/My Documents/SVN/client/data/src"/>
 			<source-path path-element="D:/My Documents/Git/minimalcomps/src"/>
+			<source-path path-element="F:/My Documents/SVN/Box2D/src"/>
+			<source-path path-element="F:/My Documents/SVN/as3ds/src"/>
 			
 			<define name="CONFIG::debug" value="true"/>
 			<define name="CONFIG::xxx" value="false"/>
