@@ -8,19 +8,19 @@ package org.easily.utils
 	 */
 	public class MathUtils
 	{
-		public static const tr2a:Number = 180 / Math.PI;
-		public static const ta2r:Number = Math.PI / 180;
+		private static const _tr2a:Number = 180 / Math.PI;
+		private static const _ta2r:Number = Math.PI / 180;
 		
 		//弧度转角度
-		public static function r2a(radians_:Number):Number
+		public static function r2a(r:Number):Number
 		{
-			return radians_ * tr2a;
+			return r * _tr2a;
 		}
 		
 		//角度转弧度
-		public static function a2r(angle_:Number):Number
+		public static function a2r(a:Number):Number
 		{
-			return angle_ * ta2r;
+			return a * _ta2r;
 		}
 
 		//求两点之间的夹角
@@ -97,6 +97,13 @@ package org.easily.utils
 			return int(randNumber(min, max));
 		}
 		
+		//给一个数字，随机一个范围，处于该数字的正负之间
+		public static function randBound(num:Number):Number
+		{
+			num = Math.abs(num);
+			return randNumber(-num, num);
+		}
+		
 		//森汉姆算法，求一条直线所经过的点 
 		public static function bresenham(x1:int, y1:int, x2:int, y2:int):Array
 		{
@@ -161,26 +168,26 @@ package org.easily.utils
 		}
 		
 		//射线，从一个点，延着一个方向距离某个长度的一个点
-		public static function rayEx(startX:Number, startY:Number, endX:Number, endY:Number, startX2:Number, startY2:Number, len:Number):Point
+		public static function rayXY(startX:Number, startY:Number, endX:Number, endY:Number, startX2:Number, startY2:Number, len:Number):Point
 		{
 			var radian:Number = Math.atan2(endY - startY, endX - startX);
 			return ray(new Point(startX2, startY2), radian, len);
 		}
 		
 		//射线，从一个点，延着一个方向距离某个长度的一个点
-		public static function rayEx2(start:Point, end:Point, start2:Point, len:Number):Point
+		public static function rayPt(start:Point, end:Point, start2:Point, len:Number):Point
 		{
-			return rayEx(start.x, start.y, end.x, end.y, start2.x, start2.y, len)
+			return rayXY(start.x, start.y, end.x, end.y, start2.x, start2.y, len)
 		}
 		
 		//射线，从一个点，延着一个方向距离某个长度的一个点
 		public static function ray(pt:Point, radian:Number, len:Number):Point
 		{
-			return ray2(pt.x, pt.y, radian, len);
+			return rayLen(pt.x, pt.y, radian, len);
 		}
 		
 		//射线，从一个点，延着一个方向距离某个长度的一个点
-		public static function ray2(x:Number, y:Number, radian:Number, len:Number):Point
+		public static function rayLen(x:Number, y:Number, radian:Number, len:Number):Point
 		{
 			var x_:Number = Math.cos(radian) * len + x;
 			var y_:Number = Math.sin(radian) * len + y;
@@ -191,6 +198,65 @@ package org.easily.utils
 		public static function between(value:Number, min:Number, max:Number):Boolean
 		{
 			return value >= min && value <= max;
+		}
+		
+		//克隆
+		public static function clone(array:Array):Array
+		{
+			if (!array || array.length == 0)
+			{
+				return [];
+			}
+			var len:int = array.length;
+			var array_:Array = new Array(len);
+			for (var i:int = 0; i < len; ++i)
+			{
+				array_[i] = array[i];
+			}
+			return array_;
+		}
+		
+		//在指定位置插入元素
+		public static function insert(array:Array, item:Object, index:int, repeat:Boolean = false):Boolean
+		{
+			if (!array || !item)
+			{
+				return false;
+			}
+			if (!repeat)
+			{
+				if (array.indexOf(item) == -1)
+				{
+					array.splice(index, 0, item);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				array.splice(index, 0, item);
+				return true;
+			}
+		}
+		
+		//插入列表
+		public static function insertList(array:Array, list:Array, index:int, repeat:Boolean = false):void
+		{
+			if (!array || !list)
+			{
+				return;
+			}
+			var list_:Array = clone(list);
+			while (list_.length > 0) 
+			{
+				if (insert(array, list_.shift(), index, repeat))
+				{
+					++index;
+				}
+			}
 		}
 	}
 }

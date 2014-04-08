@@ -1,13 +1,29 @@
 package org.easily.loader
 {
+	import de.polygonal.ds.Prioritizable;
+	
 	import flash.utils.ByteArray;
+	import flash.utils.describeType;
 	
 	import org.easily.ds.QueuePriority;
 	import org.easily.utils.StringUtils;
 
 	//加载项
-	public class LoaderItem
+	public class LoaderItem extends Prioritizable
 	{
+		//初始化
+		private static var _init:int = __init();
+		private static function __init():int
+		{
+			keys = [];
+			for each (var variable:XML in describeType(LoaderItem)..variable)
+			{
+				keys.push(String(variable.@name));
+			}
+			return -1;
+		}
+		
+		public static var keys:Array;											//所有参数名称
 		public var id:uint = LoaderUtils.genID();								//加载id
 		public var type:String = LoaderType.RES;								//资源类型
 		public var url:String;													//资源地址
@@ -22,7 +38,6 @@ package org.easily.loader
 		public var retry:Boolean = false;										//是否是重试状态
 		public var cache:Boolean = false;										//是否缓存
 		public var timeout:Number = LoaderConsts.TIME_OUT;					//最大超时值
-		public var priority:int = QueuePriority.MID;							//优先级
 		public var tip:String = LoaderConsts.DEFAULT_TIP;					//加载说明
 		public var idle:Boolean = false;										//空闲加载
 		public var sames:Array = [];											//相同加载请求
@@ -30,6 +45,7 @@ package org.easily.loader
 		
 		public function LoaderItem()
 		{
+			priority = QueuePriority.MID;
 		}
 		
 		public function onOpen():void
@@ -90,7 +106,7 @@ package org.easily.loader
 			return item;
 		}
 		
-		public function toString():String
+		override public function toString():String
 		{
 			// TODO Auto Generated method stub
 			return StringUtils.substitute("loaderItem:id={0},type={1},url={2},cache={3}", id, type, url, cache);

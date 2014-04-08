@@ -9,7 +9,7 @@ package org.easily.loader
 		public static const ERROR:int = 2;		
 		
 		//建立连接
-		public static const OPEN:int = 3;			
+		public static const OPEN:int = 3;
 		
 		//加载完成
 		public static const COMPLETE:int = 4;	

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"func",
+				"function	new function"
+			],
+			[
 				"enem",
 				"enemy"
 			],
@@ -18,10 +22,6 @@
 			[
 				"re",
 				"removeEffect"
-			],
-			[
-				"func",
-				"function"
 			],
 			[
 				"getbody",
@@ -523,7 +523,87 @@
 			"file": "src/Easily.as",
 			"settings":
 			{
-				"buffer_size": 28786,
+				"buffer_size": 30216,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/My Documents/Flash Builder 4.5/GameLoader/build/build.xml",
+			"settings":
+			{
+				"buffer_size": 2819,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/My Documents/Flash Builder 4.5/game/build/build.xml",
+			"settings":
+			{
+				"buffer_size": 4611,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/My Documents/Flash Builder 4.5/XPlayer/build.xml",
+			"settings":
+			{
+				"buffer_size": 2070,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/deploy/qc/genversion",
+			"settings":
+			{
+				"buffer_size": 1529,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/deploy/tw/genversion",
+			"settings":
+			{
+				"buffer_size": 1059,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/deploy/18/genversion",
+			"settings":
+			{
+				"buffer_size": 735,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/deploy/kor/genversion",
+			"settings":
+			{
+				"buffer_size": 1063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/deploy/vnm/genversion",
+			"settings":
+			{
+				"buffer_size": 1063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/My Documents/Flash Builder 4.5/GameLoader/build/build.properties",
+			"settings":
+			{
+				"buffer_size": 116,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/F/My Documents/SVN/client/XPlayer/build.xml",
+			"settings":
+			{
+				"buffer_size": 2070,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +611,7 @@
 			"file": "/F/My Documents/SVN/client/data/build.xml",
 			"settings":
 			{
-				"buffer_size": 2945,
+				"buffer_size": 3011,
 				"line_ending": "Windows"
 			}
 		},
@@ -550,6 +630,22 @@
 		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"setting default",
+				"Preferences: Settings - Default"
+			],
+			[
+				"key bindings default",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"key default",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
 			[
 				"ins",
 				"Package Control: Install Package"
@@ -639,7 +735,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 400.0
+		"width": 528.0
 	},
 	"console":
 	{
@@ -656,11 +752,24 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/GBK Encoding Support/tmp/hs.ahk                F%3A%5CMy+Documents%5C%E5%BF%AB%E7%9B%98%5C%E6%96%87%E6%A1%A3%5C%E9%85%8D%E7%BD%AE%5Chs.ahk",
+		"/F/My Documents/快盘/文档/配置/hs.ahk",
+		"/D/My Documents/My Pictures/Img379339100.jpg",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/File History/Default.sublime-keymap",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/D/My Documents/Flash Builder 4.5/game/build/build.xml",
+		"/F/My Documents/SVN/client/deploy/18/genversion",
+		"/F/My Documents/快盘/临时/timer.ahk",
+		"/D/My Documents/Run/timer.ahk",
+		"/F/My Documents/快盘/文档/快捷/家里/Shortcuts/timer.ahk",
+		"/D/My Documents/Run/start.ahk",
+		"/F/My Documents/SVN/clientcore/fight/UI/HpBarXXXConfig.as",
+		"/D/My Documents/Flash Builder 4.5/Easily/easily.sublime-project",
 		"/D/My Documents/Flash Builder 4.5/Easily/src/Easily.as",
 		"/D/My Documents/Flash Builder 4.5/game/build/game.sublime-project",
-		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/D/My Documents/Flash Builder 4.5/game/build/build.xml",
 		"/F/My Documents/SVN/clientcore/fight/脚本/zhaoyun.as",
 		"/F/My Documents/SVN/clientcore/fight/脚本/zhangbao.as",
 		"/F/My Documents/SVN/clientcore/fight/脚本/CommonScript1.as",
@@ -669,7 +778,6 @@
 		"/F/My Documents/My DBank/文档/配置/hs.ahk",
 		"/F/My Documents/SVN/client/fla/fight/脚本/list",
 		"/F/My Documents/SVN/client/fla/fight/脚本/chicken.as",
-		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
 		"/F/My Documents/SVN/client/fla/fight/脚本/monster-1.as",
 		"/F/My Documents/SVN/client/fla/fight/脚本/boss.as",
 		"/F/My Documents/SVN/client/fla/fight/脚本/SkillScript.as",
@@ -685,7 +793,6 @@
 		"/F/My Documents/SVN/client/fla/fight/脚本/newskill.as",
 		"/F/My Documents/SVN/client/fla/fight/脚本/merge.lua",
 		"/F/My Documents/SVN/client/fla/fight/脚本/stp.sublime-workspace",
-		"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
 		"/F/My Documents/SVN/client/fla/fight/脚本/newfs.as",
 		"/F/My Documents/SVN/client/fla/fight/脚本/yuji.as",
 		"/F/My Documents/SVN/client/fla/fight/脚本/liuxiu.as",
@@ -772,18 +879,7 @@
 		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/fight/FightUtils.as",
 		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/fight/skill/SkillUtils.as",
 		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/avatar/AnimatType.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/log/ImportText.txt",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/avatar/AvatarPart.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/mount/ui/AvatarPanel.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/mount/MountEntity.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/mount/ui/AwardPanel.as",
-		"/C/Documents and Settings/Administrator/Application Data/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/mount/MountInfo.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/fight/FightScene.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/newscene/NewCityScene.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/city/City.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/net/SocketConnection.as",
-		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/game/GameMediator.as"
+		"/D/My Documents/Flash Builder 4.5/game/src/com/aiyou/yesguo/log/ImportText.txt"
 	],
 	"find":
 	{
@@ -805,9 +901,18 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"vim",
+			"ATTR_EFF",
+			"time",
+			"proxy",
+			"alt_z_x_c",
+			"ctrl+alt+h",
+			"history",
+			"incremental",
+			"t223",
 			"FocusEvent",
 			"font",
 			"buildMain",
@@ -926,16 +1031,7 @@
 			"7288",
 			"7278",
 			"6234",
-			"5227",
-			"6234",
-			"print",
-			"7105",
-			"7148",
-			"4046",
-			"44046",
-			".initX",
-			"function linearSkill",
-			"function stopFrameIndex"
+			"5227"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -963,7 +1059,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -971,15 +1067,15 @@
 					"file": "src/Easily.as",
 					"settings":
 					{
-						"buffer_size": 28786,
+						"buffer_size": 30216,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2290,
-								2290
+								2490,
+								2490
 							]
 						],
 						"settings":
@@ -989,25 +1085,301 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1330.0,
+						"translation.y": 956.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/F/My Documents/SVN/client/data/build.xml",
+					"file": "/D/My Documents/Flash Builder 4.5/GameLoader/build/build.xml",
 					"settings":
 					{
-						"buffer_size": 2945,
+						"buffer_size": 2819,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2807,
-								2807
+								1799,
+								1799
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/My Documents/Flash Builder 4.5/game/build/build.xml",
+					"settings":
+					{
+						"buffer_size": 4611,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2665,
+								2665
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 984.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/My Documents/Flash Builder 4.5/XPlayer/build.xml",
+					"settings":
+					{
+						"buffer_size": 2070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2036,
+								2036
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/F/My Documents/SVN/client/deploy/qc/genversion",
+					"settings":
+					{
+						"buffer_size": 1529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								955,
+								783
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/F/My Documents/SVN/client/deploy/tw/genversion",
+					"settings":
+					{
+						"buffer_size": 1059,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1059,
+								1059
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/F/My Documents/SVN/client/deploy/18/genversion",
+					"settings":
+					{
+						"buffer_size": 735,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								735,
+								735
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/F/My Documents/SVN/client/deploy/kor/genversion",
+					"settings":
+					{
+						"buffer_size": 1063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								874,
+								874
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/F/My Documents/SVN/client/deploy/vnm/genversion",
+					"settings":
+					{
+						"buffer_size": 1063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								874,
+								874
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/D/My Documents/Flash Builder 4.5/GameLoader/build/build.properties",
+					"settings":
+					{
+						"buffer_size": 116,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Java/JavaProperties.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/F/My Documents/SVN/client/XPlayer/build.xml",
+					"settings":
+					{
+						"buffer_size": 2070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2070,
+								2070
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 418.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/F/My Documents/SVN/client/data/build.xml",
+					"settings":
+					{
+						"buffer_size": 3011,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1017,13 +1389,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 380.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 12,
 					"file": "/D/My Documents/Flash Builder 4.5/protoc-gen-as3/src/com/netease/protobuf/Int64.as",
 					"settings":
 					{
@@ -1102,6 +1474,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"",
+				"/C/Users/Administrator/AppData/Roaming/Sublime Text 2/Packages/File History/Default.sublime-keymap"
+			],
+			[
+				"buid",
+				"/F/My Documents/SVN/client/XPlayer/build.xml"
+			],
 			[
 				"easil",
 				"Easily/src/Easily.as"
@@ -1605,14 +1985,6 @@
 			[
 				"decl",
 				"Declare.as"
-			],
-			[
-				"imp",
-				"ImportScript.as"
-			],
-			[
-				"fightsc",
-				"FightScript.as"
 			]
 		],
 		"width": 0.0
