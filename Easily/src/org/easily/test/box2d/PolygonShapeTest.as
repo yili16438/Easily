@@ -1,4 +1,4 @@
-package org.easily.test
+package org.easily.test.box2d
 {
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
@@ -15,6 +15,8 @@ package org.easily.test
 	
 	public class PolygonShapeTest extends Sprite
 	{
+		include "../../box2d/b2Common.as";
+		
 		public var world:b2World;
 		
 		public function PolygonShapeTest()
@@ -29,10 +31,10 @@ package org.easily.test
 			
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			bodyDef.type = b2Body.b2_staticBody;
-			bodyDef.position.Set(b2Utils.p2m(320), b2Utils.p2m(100));
+			bodyDef.position.Set(p2m(320), p2m(100));
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape();
-			polygonShape.SetAsBox(b2Utils.p2m(20), b2Utils.p2m(80));
+			polygonShape.SetAsBox(p2m(20), p2m(80));
 			
 			var fixture:b2FixtureDef = new b2FixtureDef();
 			fixture.shape = polygonShape;
@@ -40,7 +42,7 @@ package org.easily.test
 			var body:b2Body = world.CreateBody(bodyDef);
 			body.CreateFixture(fixture);
 			
-			polygonShape.SetAsOrientedBox(b2Utils.p2m(20), b2Utils.p2m(80), new b2Vec2(b2Utils.p2m(0), b2Utils.p2m(30)), Math.PI / 4);
+			polygonShape.SetAsOrientedBox(p2m(20), p2m(80), new b2Vec2(p2m(0), p2m(30)), Math.PI / 4);
 			fixture.shape = polygonShape;
 			body.CreateFixture(fixture);
 			

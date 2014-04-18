@@ -1,8 +1,16 @@
-package org.easily.test
+package org.easily.test.box2d
 {
 	import Box2D.Collision.Shapes.b2CircleShape;
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
+	import Box2D.Dynamics.Contacts.b2Contact;
+	import Box2D.Dynamics.Contacts.b2ContactEdge;
+	import Box2D.Dynamics.Joints.b2DistanceJoint;
+	import Box2D.Dynamics.Joints.b2DistanceJointDef;
+	import Box2D.Dynamics.Joints.b2MouseJoint;
+	import Box2D.Dynamics.Joints.b2MouseJointDef;
+	import Box2D.Dynamics.Joints.b2RevoluteJoint;
+	import Box2D.Dynamics.Joints.b2RevoluteJointDef;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2DebugDraw;
@@ -19,72 +27,122 @@ package org.easily.test
 	import flash.text.TextFieldType;
 	
 	import org.easily.box2d.b2Consts;
+	import org.easily.box2d.b2Utils;
 	
 	[SWF(width="640", height="480", backgroundColor="0x414647")]
 	public class Box2dTest extends Sprite
 	{
-		include "../box2d/b2Common.as";
+		include "../../box2d/b2Common.as";
 		
-		public static function p2m(p:Number):Number
-		{
-			return p / worldScale;
-		}
-		
-		public static function m2p(m:Number):Number
-		{
-			return m * worldScale;
-		}
-		
-		public var world:b2World;
-		public var textField:TextField;
-		public var theBall:b2Body;
-		public var theIdol:b2Body;
-		public var sphereVector:Vector.<b2Body>;
+		private var world:b2World;
+		private var textField:TextField;
+		private var theBall:b2Body;
+		private var theIdol:b2Body;
+		private var sphereVector:Vector.<b2Body>;
+		private var mouseJoint:b2MouseJoint;
+		private var disJoint:b2DistanceJoint;
+		private var rJoint:b2RevoluteJoint;
 		
 		public function Box2dTest()
+		{
+			if (stage) 
+			{
+				onInit();
+			}
+			else
+			{
+				addEventListener(Event.ADDED_TO_STAGE, onInit);
+			}
+		}
+		
+		private function onInit(event:Event=null):void
 		{
 			stage.frameRate = frameRate;
 			
 			var gravity:b2Vec2 = new b2Vec2(0, 9.81);
 			var sleep:Boolean = true;
 			world = new b2World(gravity, sleep);
+			world.SetContactListener(new CustomContact);
 			
-			testBird();
-			// createBall();
+			// testBird();
+//			var ballA:b2Body = createBall2(320, 50, 30);
+//			var ballB:b2Body = createBall2(330, 50, 30);
+//			
+//			var disJointDef:b2DistanceJointDef = new b2DistanceJointDef();
+//			disJointDef.bodyA = ballA;
+//			disJointDef.bodyB = ballB;
+//			disJointDef.length = 100 / worldScale;
+//			disJoint = world.CreateJoint(disJointDef) as b2DistanceJoint;
+			
+			var brick:b2Body = createBrick(320, 240, 50, 50);
+			var rJointDef:b2RevoluteJointDef = new b2RevoluteJointDef();
+			rJointDef.bodyA = brick;
+			rJointDef.bodyB = world.GetGroundBody();
+			rJointDef.localAnchorA = new b2Vec2();
+			rJointDef.localAnchorB = brick.GetWorldCenter();
+			rJointDef.enableMotor = true;
+			rJointDef.motorSpeed = -5;
+			rJointDef.maxMotorTorque = 1000;
+			rJoint = world.CreateJoint(rJointDef) as b2RevoluteJoint;
+			
 			createFloor();
-			createDebug();
 			// testIdol();
 			// testSphere();
 			
+			b2Utils.createDebug(this, world, worldScale, b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit, 0.5);
+			b2Utils.mouseJoint(stage, world, worldScale);
 			addEventListener(Event.ENTER_FRAME, onUpdate);
-			stage.addEventListener(MouseEvent.CLICK, onClick);
+			// stage.addEventListener(MouseEvent.CLICK, onClick);
 		}
 		
-		public function createBall():void
+		private function createBall():b2Body
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			
-			bodyDef.position.Set(p2m(320), p2m(30));
+			bodyDef.position.Set(p2m(320), p2m(50));
 			bodyDef.type = b2Body.b2_dynamicBody;
 			
-			var circleShape:b2CircleShape = new b2CircleShape(p2m(25));
+			var circleShape:b2CircleShape = new b2CircleShape(p2m(30));
 			
 			var fixtureDef:b2FixtureDef = new b2FixtureDef();
 			fixtureDef.shape = circleShape;
 			
-			fixtureDef.density = 1;
-			fixtureDef.restitution = 0.6;
+			fixtureDef.density = 2;
+			fixtureDef.restitution = 0.8;
 			fixtureDef.friction = 0.1;
 			
 			theBall = world.CreateBody(bodyDef);
 			theBall.CreateFixture(fixtureDef);
+			return theBall;
 		}
 		
-		public function createFloor():void
+		private function createBall2(x:Number, y:Number, radius:Number):b2Body
+		{
+			var bodyDef:b2BodyDef = new b2BodyDef();
+			
+			bodyDef.position.Set(x / worldScale, y / worldScale);
+			bodyDef.type = b2Body.b2_dynamicBody;
+			
+			var circleShape:b2CircleShape = new b2CircleShape(radius / worldScale);
+			
+			var fixtureDef:b2FixtureDef = new b2FixtureDef();
+			fixtureDef.shape = circleShape;
+			
+			fixtureDef.density = 2;
+			fixtureDef.restitution = 0.8;
+			fixtureDef.friction = 0.1;
+			
+			var ball:b2Body = world.CreateBody(bodyDef);
+			ball.CreateFixture(fixtureDef);
+			return ball;
+		}
+		
+		private function createFloor():void
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			bodyDef.position.Set(p2m(320), p2m(465));
 			bodyDef.type = b2Body.b2_staticBody;
+			bodyDef.userData = "Floor";
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape();
 			polygonShape.SetAsBox(p2m(320), p2m(15));
@@ -99,25 +157,12 @@ package org.easily.test
 			theFloor.CreateFixture(fixtureDef);
 		}
 		
-		public function createDebug():void
-		{
-			var debugDraw:b2DebugDraw = new b2DebugDraw();
-			var debugSprite:Sprite = new Sprite();
-			addChild(debugSprite);
-			
-			debugDraw.SetSprite(debugSprite);
-			debugDraw.SetDrawScale(worldScale);
-			debugDraw.SetFlags(b2DebugDraw.e_shapeBit);
-			debugDraw.SetFillAlpha(0.5);
-			world.SetDebugDraw(debugDraw);
-		}
-		
-		public function createBrick(x:Number, y:Number, w:Number, h:Number, ud:Object = null):void
+		private function createBrick(x:Number, y:Number, w:Number, h:Number):b2Body
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef;
 			bodyDef.position.Set(p2m(x), p2m(y));
 			bodyDef.type = b2Body.b2_dynamicBody;
-			bodyDef.userData = ud;
+			bodyDef.userData = "Brick";
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape;
 			polygonShape.SetAsBox(p2m(w / 2), p2m(h / 2));
@@ -130,9 +175,10 @@ package org.easily.test
 			
 			var theBrick:b2Body = world.CreateBody(bodyDef);
 			theBrick.CreateFixture(fixtureDef);
+			return theBrick;
 		}
 		
-		public function createIdol(x:Number, y:Number):void
+		private function createIdol(x:Number, y:Number):void
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef;
 			bodyDef.position.Set(p2m(x), p2m(y));
@@ -165,7 +211,7 @@ package org.easily.test
 			theIdol.CreateFixture(fixtureDef);
 		}
 		
-		public function createSphere(x:Number, y:Number, r:Number):b2Body
+		private function createSphere(x:Number, y:Number, r:Number):b2Body
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef(); 
 			bodyDef.position.Set(x / worldScale,y / worldScale); 
@@ -181,7 +227,7 @@ package org.easily.test
 			return theSphere; 
 		}
 		
-		public function testIdol():void
+		private function testIdol():void
 		{
 			createBrick(275,435,30,30);
 			createBrick(365,435,30,30);
@@ -198,7 +244,7 @@ package org.easily.test
 			addChild(textField);
 		}
 		
-		public function testSphere():void
+		private function testSphere():void
 		{
 			sphereVector = new Vector.<b2Body>();
 			for (var i:int = 0; i < 3; i++) 
@@ -224,7 +270,7 @@ package org.easily.test
 		private var slingY:int=250; 
 		private var slingR:int=75;
 		 
-		public function testBird():void 
+		private function testBird():void 
 		{
 			createBrick(402,431,140,36); 
 			createBrick(544,431,140,36); 
@@ -259,7 +305,7 @@ package org.easily.test
 			theBird.addEventListener(MouseEvent.MOUSE_DOWN,birdClick);
 		}
 
-		public function birdClick(e:MouseEvent):void 
+		private function birdClick(e:MouseEvent):void 
 		{
 			stage.addEventListener(MouseEvent.MOUSE_MOVE,birdMove);
 			stage.addEventListener(MouseEvent.MOUSE_UP,birdRelease);
@@ -293,6 +339,7 @@ package org.easily.test
 			var bodyDef:b2BodyDef=new b2BodyDef(); 
 			bodyDef.position.Set(sphereX,sphereY); 
 			bodyDef.type = b2Body.b2_dynamicBody;
+			bodyDef.userData = "Ball";
 			var circleShape:b2CircleShape=new b2CircleShape(r); 
 			var fixtureDef:b2FixtureDef=new b2FixtureDef(); 
 			fixtureDef.shape=circleShape; 
@@ -308,7 +355,7 @@ package org.easily.test
 			stage.removeEventListener(MouseEvent.MOUSE_UP,birdRelease); 
 		} 	
 
-		public function onUpdate(event:Event):void
+		private function onUpdate(event:Event):void
 		{
 			world.Step(timeStep, velIterations, posIterations);
 			
@@ -321,18 +368,26 @@ package org.easily.test
 //			str += "\n" + "velocity:" + "x=" + Math.round(vel.x * worldScale) + ",y=" + Math.round(vel.y * worldScale);
 //			textField.text = str;
 			
+//			for (var body:b2Body = world.GetBodyList(); body; body = body.GetNext())
+//			{
+//				for (var contact:b2ContactEdge = body.GetContactList(); contact; contact = contact.next)
+//				{
+//					
+//				}
+//			}
+			
 			world.ClearForces();
 			world.DrawDebugData();
 		}
 		
-		public function onClick(event:MouseEvent):void
+		private function onClick(event:MouseEvent):void
 		{
 			var x:Number = p2m(mouseX);
 			var y:Number = p2m(mouseY);
 			world.QueryPoint(queryClick, new b2Vec2(x, y));
 		}
 		
-		public function queryClick(fixture:b2Fixture):Boolean
+		private function queryClick(fixture:b2Fixture):Boolean
 		{
 			var body:b2Body = fixture.GetBody();
 			world.DestroyBody(body);
