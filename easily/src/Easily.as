@@ -4,7 +4,7 @@ package
 	import flash.text.TextField;
 	
 	import org.easily.test.EasilyTest;
-	import org.easily.test.box2d.Box2dTest;
+	import org.easily.test.box2d.Box2dTest2;
 
 	/**
 	 * @author Easily
@@ -16,7 +16,7 @@ package
 		{
 			super();
 			
-			addChild(new Box2dTest);
+			addChild(new Box2dTest2);
 		}
 	}
 }
