@@ -3,12 +3,15 @@ package org.easily.test.box2d
 	import Box2D.Collision.Shapes.b2CircleShape;
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
+	import Box2D.Dynamics.Joints.b2RevoluteJoint;
+	import Box2D.Dynamics.Joints.b2RevoluteJointDef;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
 	import Box2D.Dynamics.b2World;
 	
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -16,9 +19,9 @@ package org.easily.test.box2d
 	[SWF(width="640", height="480", backgroundColor="0x414647")]
 	public class Box2dTest2 extends Sprite
 	{
-		include "../../box2d/b2Common.as";
+		include "../../box2d/b2Utils.as";
 		
-		public var world:b2World;
+		private var world:b2World;	
 		
 		public function Box2dTest2()
 		{
@@ -28,73 +31,52 @@ package org.easily.test.box2d
 			var gravity:b2Vec2 = new b2Vec2(0, 9.81);
 			world = new b2World(gravity, sleep);
 			
-			createFace();
-			createFloor();
+			createMotor();
+//			createFace();
+			createWall();
 			syncPosition();
-			
-			stage.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			createDebug(this, world, b2DebugDraw.e_jointBit | b2DebugDraw.e_shapeBit, 0.8);		
+			mouseJoint(stage, world);
 			addEventListener(Event.ENTER_FRAME, onUpdate);
 		}
-
-		private function onMouseDown(event:MouseEvent):void
+		
+		private function createMotor():void
 		{
-			world.QueryPoint(queryPoint, new b2Vec2(mouseX / worldScale, mouseY / worldScale));
+			var box1:b2Body = createRect(world, b2Body.b2_dynamicBody, new b2Vec2(100, 100), new b2Vec2(30, 30), 5, 0.5, 0.5);
+			var box2:b2Body = createRect(world, b2Body.b2_dynamicBody, new b2Vec2(300, 100), new b2Vec2(30, 30), 5, 0.5, 0.5);
+			var bridge:b2Body = createRect(world, b2Body.b2_dynamicBody, new b2Vec2(200, 100), new b2Vec2(110, 10), 5, 0.5, 0.5);
+			
+			revoluteJoint(world, box1, bridge, new b2Vec2(0 / worldScale, 0), new b2Vec2(-100 / worldScale, 0), true, 30, 3000);
+			revoluteJoint(world, box2, bridge, new b2Vec2(0 / worldScale, 0), new b2Vec2(100 / worldScale, 0), true, -30, 3000);
 		}
 		
-		private function queryPoint(fixture:b2Fixture):Boolean
+		private function createWall():void
 		{
-			return false;
-		}
-		
-		private function createFloor():void
-		{
-			var bodyDef:b2BodyDef = new b2BodyDef();
-			bodyDef.type = b2Body.b2_staticBody;
-			bodyDef.userData = new PhysFloor;
-			bodyDef.userData.width = 640;
-			bodyDef.userData.height = 30;
-			addChild(bodyDef.userData);
-			
-			var polygonShape:b2PolygonShape = new b2PolygonShape();
-			polygonShape.SetAsBox(320 / worldScale, 15 / worldScale);
-			
-			var fixtureDef:b2FixtureDef = new b2FixtureDef();
-			fixtureDef.density = 2;
-			fixtureDef.friction = 0.4;
-			fixtureDef.restitution = 0.3;
-			fixtureDef.shape = polygonShape;
-			
-			var floor:b2Body = world.CreateBody(bodyDef);
-			floor.CreateFixture(fixtureDef);
-			floor.SetPosition(new b2Vec2(320 / worldScale, 465 / worldScale))
+			var down:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(320, 475), new b2Vec2(1000, 5), 2, 0.4, 0.3);		
+			var left:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(0, 240), new b2Vec2(5, 1000), 2, 0.4, 0.3);	
+			var right:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(640, 240), new b2Vec2(5, 1000), 2, 0.4, 0.3);	
+//			var mc:MovieClip = new PhysFloor;
+//			mc.width = 640;
+//			mc.height = 30;
+//			addChild(mc);
+//			floor.SetUserData(mc);
 		}
 		
 		private function createFace():void
 		{
-			var bodyDef:b2BodyDef = new b2BodyDef();
-			bodyDef.type = b2Body.b2_dynamicBody;
-			bodyDef.userData = new PhysCircle;
-			bodyDef.userData.width = 60;
-			bodyDef.userData.height = 60;
-			addChild(bodyDef.userData);
-			
-			var circel:b2CircleShape = new b2CircleShape(30 / worldScale);
-			
-			var fixtureDef:b2FixtureDef = new b2FixtureDef();
-			fixtureDef.density = 2;
-			fixtureDef.friction = 0.4;
-			fixtureDef.restitution = 0.5;
-			fixtureDef.shape = circel;
-			
-			var face:b2Body = world.CreateBody(bodyDef);
-			face.CreateFixture(fixtureDef);
-			face.SetPosition(new b2Vec2(320 / worldScale, 50 / worldScale))
+			var face:b2Body = createCircle(world, b2Body.b2_dynamicBody, new b2Vec2(320, 50), 30, 2, 0.4, 0.5);
+//			var mc:MovieClip = new PhysCircle;
+//			mc.width = 60;
+//			mc.height = 60;
+//			addChild(mc);
+//			face.SetUserData(mc);
 		}
 
 		private function onUpdate(event:Event):void
 		{
 			world.Step(timeStep, velIterations, posIterations);
 			world.ClearForces();
+			world.DrawDebugData();
 			syncPosition();
 		}
 		

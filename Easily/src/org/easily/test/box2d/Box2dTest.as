@@ -32,7 +32,7 @@ package org.easily.test.box2d
 	[SWF(width="640", height="480", backgroundColor="0x414647")]
 	public class Box2dTest extends Sprite
 	{
-		include "../../box2d/b2Common.as";
+		include "../../box2d/b2Utils.as";
 		
 		private var world:b2World;
 		private var textField:TextField;
@@ -89,8 +89,8 @@ package org.easily.test.box2d
 			// testIdol();
 			// testSphere();
 			
-			b2Utils.createDebug(this, world, worldScale, b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit, 0.5);
-			b2Utils.mouseJoint(stage, world, worldScale);
+			createDebug(this, world, worldScale, b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit, 0.5);
+			mouseJoint(stage, world, worldScale);
 			addEventListener(Event.ENTER_FRAME, onUpdate);
 			// stage.addEventListener(MouseEvent.CLICK, onClick);
 		}
@@ -99,10 +99,10 @@ package org.easily.test.box2d
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			
-			bodyDef.position.Set(p2m(320), p2m(50));
+			bodyDef.position.Set(320 / worldScale, 50 / worldScale);
 			bodyDef.type = b2Body.b2_dynamicBody;
 			
-			var circleShape:b2CircleShape = new b2CircleShape(p2m(30));
+			var circleShape:b2CircleShape = new b2CircleShape(30 / worldScale);
 			
 			var fixtureDef:b2FixtureDef = new b2FixtureDef();
 			fixtureDef.shape = circleShape;
@@ -140,12 +140,12 @@ package org.easily.test.box2d
 		private function createFloor():void
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef();
-			bodyDef.position.Set(p2m(320), p2m(465));
+			bodyDef.position.Set(320 / worldScale, 465 / worldScale);
 			bodyDef.type = b2Body.b2_staticBody;
 			bodyDef.userData = "Floor";
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape();
-			polygonShape.SetAsBox(p2m(320), p2m(15));
+			polygonShape.SetAsBox(320 / worldScale, 15 / worldScale);
 
 			var fixtureDef:b2FixtureDef = new b2FixtureDef();
 			fixtureDef.density = 1;
@@ -160,12 +160,12 @@ package org.easily.test.box2d
 		private function createBrick(x:Number, y:Number, w:Number, h:Number):b2Body
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef;
-			bodyDef.position.Set(p2m(x), p2m(y));
+			bodyDef.position.Set(x / worldScale, y / worldScale);
 			bodyDef.type = b2Body.b2_dynamicBody;
 			bodyDef.userData = "Brick";
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape;
-			polygonShape.SetAsBox(p2m(w / 2), p2m(h / 2));
+			polygonShape.SetAsBox(w / 2 / worldScale, h / 2 / worldScale);
 			
 			var fixtureDef:b2FixtureDef = new b2FixtureDef;
 			fixtureDef.shape = polygonShape;
@@ -181,11 +181,11 @@ package org.easily.test.box2d
 		private function createIdol(x:Number, y:Number):void
 		{
 			var bodyDef:b2BodyDef = new b2BodyDef;
-			bodyDef.position.Set(p2m(x), p2m(y));
+			bodyDef.position.Set(x / worldScale, y / worldScale);
 			bodyDef.type = b2Body.b2_dynamicBody;
 			
 			var polygonShape:b2PolygonShape = new b2PolygonShape;
-			polygonShape.SetAsBox(p2m(5), p2m(20));
+			polygonShape.SetAsBox(5 / worldScale, 20 / worldScale);
 			
 			var fixtureDef:b2FixtureDef = new b2FixtureDef;
 			fixtureDef.shape = polygonShape;
@@ -196,9 +196,9 @@ package org.easily.test.box2d
 			theIdol = world.CreateBody(bodyDef);
 			theIdol.CreateFixture(fixtureDef);
 			
-			var w:Number = p2m(5);
-			var h:Number = p2m(20);
-			var pos:b2Vec2 = new b2Vec2(0, p2m(10));
+			var w:Number = 5 / worldScale;
+			var h:Number = 20 / worldScale;
+			var pos:b2Vec2 = new b2Vec2(0, 10 / worldScale);
 			var angle:Number = -Math.PI / 4;
 			
 			polygonShape.SetAsOrientedBox(w, h, pos, angle);
@@ -382,8 +382,8 @@ package org.easily.test.box2d
 		
 		private function onClick(event:MouseEvent):void
 		{
-			var x:Number = p2m(mouseX);
-			var y:Number = p2m(mouseY);
+			var x:Number = mouseX / worldScale;
+			var y:Number = mouseY / worldScale;
 			world.QueryPoint(queryClick, new b2Vec2(x, y));
 		}
 		
