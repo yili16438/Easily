@@ -21,7 +21,7 @@ package org.easily.test.box2d
 	{
 		include "../../box2d/b2Utils.as";
 		
-		private var world:b2World;	
+		private var world:b2World;
 		
 		public function Box2dTest2()
 		{
