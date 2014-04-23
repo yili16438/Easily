@@ -32,7 +32,7 @@ package org.easily.test.box2d
 			world = new b2World(gravity, sleep);
 			
 			createMotor();
-			createFace();
+//			createFace();
 			createWall();
 			syncPosition();
 			createDebug(this, world, b2DebugDraw.e_jointBit | b2DebugDraw.e_shapeBit, 0.8);		
