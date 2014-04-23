@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Easily" default="build" basedir=".">
+
+	<property name="FLEX_HOME" value="D:/Program Files (x86)/Adobe/Adobe Flash Builder 4.6/sdks/4.6.0"/>
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<property name="WORKSPACE_DIR" value="D:/My Documents/Flash Builder 4.5"/>
+	<property name="DATA_DIR" value="F:/My Documents/SVN/client/data/src"/>
+	<property name="PROJECT_DIR" value="${WORKSPACE_DIR}/Easily"/>
+	<property name="SOURCE_DIR" value="${PROJECT_DIR}/src"/>
+	<property name="OUTPUT_DIR" value="${PROJECT_DIR}/output"/>
+	<property name="WIDTH" value="1200"/>
+	<property name="HEIGHT" value="750"/>
+
+	<target name="build">
+		<antcall target="compile"/>
+	</target>
+
+	<target name="compile">
+		<mxmlc file="${SOURCE_DIR}/Easily.as"
+			output="${OUTPUT_DIR}/Easily.swf"
+		    	show-actionscript-warnings="false" 
+		    	actionscript-file-encoding="UTF-8" 
+		    	keep-generated-actionscript="true"
+			incremental="false">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+			<static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+			<compiler.debug>true</compiler.debug>
+
+			<default-size width="${WIDTH}" height="${HEIGHT}"/>
+			<library-path dir="${PROJECT_DIR}/libs" includes="*" append="true"/>
+
+			<source-path path-element="${DATA_DIR}"/>
+			<source-path path-element="F:/My Documents/SVN/as3commons_src/as3-commons-collections/src"/>
+			<source-path path-element="F:/My Documents/SVN/client/data/src"/>
+			<source-path path-element="D:/My Documents/Git/minimalcomps/src"/>
+			<source-path path-element="F:/My Documents/SVN/Box2D/src"/>
+			<source-path path-element="F:/My Documents/SVN/as3ds/src"/>
+			
+			<define name="CONFIG::debug" value="true"/>
+			<define name="CONFIG::xxx" value="false"/>
+		</mxmlc>
+ 	</target>
+
+</project>

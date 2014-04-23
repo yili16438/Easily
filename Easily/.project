@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Easily</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] Box2D-src</name>
+			<type>2</type>
+			<location>F:/My Documents/SVN/Box2D/src</location>
+		</link>
+		<link>
+			<name>[source path] as3-commons-collections-src</name>
+			<type>2</type>
+			<location>F:/My Documents/SVN/as3commons_src/as3-commons-collections/src</location>
+		</link>
+		<link>
+			<name>[source path] as3ds-src</name>
+			<type>2</type>
+			<location>F:/My Documents/SVN/as3ds/src</location>
+		</link>
+		<link>
+			<name>[source path] minimalcomps-src</name>
+			<type>2</type>
+			<location>D:/My Documents/Git/minimalcomps/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>
