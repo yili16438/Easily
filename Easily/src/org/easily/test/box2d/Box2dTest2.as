@@ -88,7 +88,7 @@ package org.easily.test.box2d
 				{
 					body.GetUserData().x = body.GetPosition().x * worldScale;
 					body.GetUserData().y = body.GetPosition().y * worldScale;
-				} 
+				}
 			}
 		}
 	}
