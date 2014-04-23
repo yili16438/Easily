@@ -69,7 +69,7 @@ package org.easily.test.box2d
 //			mc.width = 60;
 //			mc.height = 60;
 //			addChild(mc);
-//			face.SetUserData(mc);
+//			face.SetUserData(mc); 
 		}
 
 		private function onUpdate(event:Event):void
