@@ -21,7 +21,7 @@ package org.easily.test.box2d
 	{
 		include "../../box2d/b2Utils.as";
 		
-		private var world:b2World;
+		protected var world:b2World;
 		
 		public function Box2dTest2()
 		{
@@ -33,7 +33,7 @@ package org.easily.test.box2d
 			
 			createMotor();
 //			createFace();
-			createWall();
+			createWall(world, 640, 480, 5, 2, 0.4, 0.3);
 			syncPosition();
 			createDebug(this, world, b2DebugDraw.e_jointBit | b2DebugDraw.e_shapeBit, 0.8);		
 			mouseJoint(stage, world);
@@ -48,18 +48,6 @@ package org.easily.test.box2d
 			
 			revoluteJoint(world, box1, bridge, new b2Vec2(0 / worldScale, 0), new b2Vec2(-100 / worldScale, 0), true, 30, 3000);
 			revoluteJoint(world, box2, bridge, new b2Vec2(0 / worldScale, 0), new b2Vec2(100 / worldScale, 0), true, -30, 3000);
-		}
-		
-		private function createWall():void
-		{
-			var down:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(320, 475), new b2Vec2(1000, 5), 2, 0.4, 0.3);		
-			var left:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(0, 240), new b2Vec2(5, 1000), 2, 0.4, 0.3);	
-			var right:b2Body = createRect(world, b2Body.b2_staticBody, new b2Vec2(640, 240), new b2Vec2(5, 1000), 2, 0.4, 0.3);	
-//			var mc:MovieClip = new PhysFloor;
-//			mc.width = 640;
-//			mc.height = 30;
-//			addChild(mc);
-//			floor.SetUserData(mc);
 		}
 		
 		private function createFace():void
