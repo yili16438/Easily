@@ -926,7 +926,7 @@ package org.easily.test
 		
 		private function t212():void
 		{
-			var xx = CONFIG::xxx
+			var xx = true//CONFIG::xxx
 			
 			var url:String = null
 			url = "http://192.168.22.239/videosrv?seed=739&func=requestComments&uid=82";
@@ -1618,16 +1618,16 @@ f()
 		
 		public function t47():void
 		{
-			CONFIG::debug
-			{
-				var xxxxxxx = new Object;
-				xxxxxxx.xxx = "hello"
-				trace(xxxxxxx.xxx);
-			}
-			{
-				var xxxxxxx = new Object;
-				trace(xxxxxxx.xxx);
-			}
+			// CONFIG::debug
+			// {
+			// 	var xxxxxxx = new Object;
+			// 	xxxxxxx.xxx = "hello"
+			// 	trace(xxxxxxx.xxx);
+			// }
+			// {
+			// 	var xxxxxxx = new Object;
+			// 	trace(xxxxxxx.xxx);
+			// }
 		}
 		
 		public function t46():void

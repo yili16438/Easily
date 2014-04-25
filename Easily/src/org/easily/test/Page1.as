@@ -4,7 +4,7 @@ package org.easily.test
 	
 	public class Page1 extends TabPage
 	{
-		public static var xx = Easily.xxx.xx;
+		// public static var xx = Easily.xxx.xx;
 		
 		public function Page1(color:uint)
 		{

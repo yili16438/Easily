@@ -28,7 +28,7 @@ package org.easily.test.box2d
 		private function initShapes():void
 		{
 			var pos1:b2Vec2 = new b2Vec2(100,100);
-			var vertices1:Array = [new b2Vec2(0,0), new b2Vec2(0,-30), new b2Vec2(-30,0)];
+			var vertices1:Array = [new b2Vec2(0,0), new b2Vec2(-30,0), new b2Vec2(0,-30)];
 			var triangle1:b2Body = createPolygon(world, b2Body.b2_dynamicBody, pos1, vertices1, 2, 0.3, 0.4);
 			
 //			var pos2:b2Vec2 = new b2Vec2(300,300);

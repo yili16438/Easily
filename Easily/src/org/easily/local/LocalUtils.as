@@ -1,11 +1,10 @@
 package org.easily.local
 {
-	import com.aiyou.yesguo.utils.FunctionUtils;
-	
 	import flash.events.NetStatusEvent;
 	import flash.net.SharedObject;
 	import flash.net.SharedObjectFlushStatus;
 	import flash.utils.ByteArray;
+	import org.easily.utils.FunctionUtils;
 
 	public class LocalUtils
 	{

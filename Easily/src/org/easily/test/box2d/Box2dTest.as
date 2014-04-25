@@ -26,9 +26,6 @@ package org.easily.test.box2d
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
-	import org.easily.box2d.b2Consts;
-	import org.easily.box2d.b2Utils;
-	
 	[SWF(width="640", height="480", backgroundColor="0x414647")]
 	public class Box2dTest extends Sprite
 	{

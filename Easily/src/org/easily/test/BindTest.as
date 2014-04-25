@@ -14,7 +14,7 @@ package org.easily.test
 	[Bindable]
 	public class BindTest extends Sprite
 	{
-		[Bindable]
+		// [Bindable]
 		public var str:String = "";
 		
 //		[Bindable]
