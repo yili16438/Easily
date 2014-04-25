@@ -21,6 +21,7 @@ package org.easily.test.box2d
 		
 		public function setPosition(pos:b2Vec2):void
 		{
+			pos = pos.Copy();
 			pos.x /= b2Utils.worldScale;
 			pos.y /= b2Utils.worldScale;
 			
@@ -39,89 +40,89 @@ package org.easily.test.box2d
 		private function createWalker():void
 		{
 			var density:Number = 2;
-			var friction:Number = 0.5;
+			var friction:Number = 0.8;
 			var resititution:Number = 0.3;
 			
-			var radius:Number = 30;
-			var hradius:Number = radius / 2;
-			var size:b2Vec2 = new b2Vec2(45, hradius);
+			var radius:Number = 28;
+			var size:b2Vec2 = new b2Vec2(45, radius / 2);
 			
-			var legW:Number = 40;
-			var legH:Number = 70;
-			var legLen:Number = 50;
+			var legNum:Number = 3;
 			
-			var jointLen1:Number = 70;
-			var jointLen2:Number = 82;
+			var legW:Number = 50;
+			var legH:Number = 75;
+			var legLen1:Number = 55;
+			var legLen2:Number = 55;
 			
-			var leftIndex:Number = -1;
-			var rightIndex:Number = -2;
+			var jointLen1:Number = 88;
+			var jointLen2:Number = 85;
 			
-			var leftFilter:b2FilterData = new b2FilterData();
-			leftFilter.groupIndex = leftIndex;
+			var bodyIndex:int = -1;
+			var leftIndex:int = -2;
+			var rightIndex:int = -3;
+			var legIndex:int = -4;
 			
-			var rightFilter:b2FilterData = new b2FilterData();
-			rightFilter.groupIndex = rightIndex;
-			
-			//body
-			var circle:b2Body = b2Utils.createCircle(world, b2Body.b2_dynamicBody, new b2Vec2, radius, density, friction, resititution);
-			var rect:b2Body = b2Utils.createRect(world, b2Body.b2_dynamicBody, new b2Vec2, size, density, friction, resititution);
-			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, 4, 1000);
+			//motor
+			var circle:b2Body = b2Utils.createCircle(world, b2Body.b2_dynamicBody, new b2Vec2, radius, density, friction, resititution, bodyIndex);
+			var rect:b2Body = b2Utils.createRect(world, b2Body.b2_dynamicBody, new b2Vec2, size, density, friction, resititution, bodyIndex);
+			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, -3, 1000);
 			center = circle;
 			bodies.push(rect);
 			
-			var anchor:b2Vec2 = new b2Vec2;
-			
-			anchor.Set(0, -hradius);
-			leftLeg();
-			rightLeg();
-			
-			anchor.Set(Math.cos(Math.PI / 6) * hradius, Math.sin(Math.PI / 6) * hradius);
-			leftLeg();
-			rightLeg();
-			
-			anchor.Set(-Math.cos(Math.PI / 6) * hradius, Math.sin(Math.PI / 6) * hradius);
-			leftLeg();
-			rightLeg();
+			//legs
+			var average:Number = 2 * Math.PI / legNum;
+			var anchor:b2Vec2, pos:b2Vec2 = circle.GetWorldPoint(new b2Vec2);
+			pos.Add(new b2Vec2(0, -radius * 2 / 3));
+			for (var i:int = 0; i < legNum; i++)
+			{
+				circle.SetAngle(i * average);
+				anchor = circle.GetLocalPoint(pos);
+				leftLeg();
+				rightLeg();
+			}
 			
 			function leftLeg():void
 			{
+				//up triangle
 				var vertices1:Array = [new b2Vec2, new b2Vec2(-legW,0), new b2Vec2(0,-legW)];
-				var triangle1:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2(), vertices1, density, friction, resititution);
-				triangle1.GetFixtureList().SetFilterData(leftFilter);
+				var triangle1:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2(), vertices1, density, friction, resititution, legIndex);
 				
+				//down triangle
 				var vertices2:Array = [new b2Vec2, new b2Vec2(0,legH), new b2Vec2(-legW,0)];
-				var triangle2:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2, vertices2, density, friction, resititution);
-				triangle2.GetFixtureList().SetFilterData(leftFilter);
+				var triangle2:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2, vertices2, density, friction, resititution, legIndex);
 				
 				bodies.push(triangle1, triangle2);
 				
-				//joint
-				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2, new b2Vec2, legLen);
-				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2(-legW, 0), new b2Vec2(-legW, 0), legLen);
+				//connect triangles
+				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2, new b2Vec2, legLen1);
+				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2(-legW, 0), new b2Vec2(-legW, 0), legLen2);
 				
+				//fixed the up
 				b2Utils.revoluteJoint(world, rect, triangle1, new b2Vec2(-size.x*3/2, 0), new b2Vec2); 
 				
+				//join motor
 				b2Utils.distanceJoint(world, circle, triangle1, anchor, new b2Vec2(0, -legW), jointLen1);
 				b2Utils.distanceJoint(world, circle, triangle2, anchor, new b2Vec2, jointLen2);
 			}
 			function rightLeg():void
 			{
+				//up triangle
 				var vertices1:Array = [new b2Vec2, new b2Vec2(0,-legW), new b2Vec2(legW,0)];
-				var triangle1:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2(), vertices1, density, friction, resititution);
-				triangle1.GetFixtureList().SetFilterData(rightFilter);
+				var triangle1:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2(), vertices1, density, friction, resititution, legIndex);
 				
+				//down triangle
 				var vertices2:Array = [new b2Vec2, new b2Vec2(legW,0), new b2Vec2(0,legH)];
-				var triangle2:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2, vertices2, density, friction, resititution);
-				triangle2.GetFixtureList().SetFilterData(rightFilter);
+				var triangle2:b2Body = b2Utils.createPolygon(world, b2Body.b2_dynamicBody, new b2Vec2, vertices2, density, friction, resititution, legIndex);
 				
 				bodies.push(triangle1, triangle2);
 				
-				//joint
-				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2, new b2Vec2, legLen);
-				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2(legW, 0), new b2Vec2(legW, 0), legLen);
+				//connect triangles
+				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2, new b2Vec2, legLen1);
+				b2Utils.distanceJoint(world, triangle1, triangle2, new b2Vec2(legW, 0), new b2Vec2(legW, 0), legLen2);
 				
+				//fixed the up
 				b2Utils.revoluteJoint(world, rect, triangle1, new b2Vec2(size.x*3/2, 0), new b2Vec2); 
 				
+				//join motor
 				b2Utils.distanceJoint(world, circle, triangle1, anchor, new b2Vec2(0, -legW), jointLen1);
 				b2Utils.distanceJoint(world, circle, triangle2, anchor, new b2Vec2, jointLen2);
 			}

@@ -29,7 +29,6 @@ package org.easily.box2d
 	 */
 	public class b2Utils 
 	{
-
 		public static const frameRate:Number = 30;
 		public static const timeStep:Number = 1.0 / frameRate;
 		public static const velIterations:int = 10;
@@ -44,7 +43,7 @@ package org.easily.box2d
 			return vec2;
 		}
 
-		public static function createRect(world:b2World, type:uint, pos:b2Vec2, size:b2Vec2, density:Number, friction:Number, restitution:Number):b2Body
+		public static function createRect(world:b2World, type:uint, pos:b2Vec2, size:b2Vec2, density:Number, friction:Number, restitution:Number, filterIndex:int = 0):b2Body
 		{
 			pos = convertVec2(pos);
 			size = convertVec2(size);
@@ -61,13 +60,14 @@ package org.easily.box2d
 			fixtureDef.friction = friction;
 			fixtureDef.restitution = restitution;
 			fixtureDef.shape = shapeDef;
+			fixtureDef.filter.groupIndex = filterIndex;
 			
 			var body:b2Body = world.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
 			return body;
 		}
 
-		public static function createRect2(world:b2World, type:uint, pos:b2Vec2, size:b2Vec2, offset:b2Vec2, angle:Number, density:Number, friction:Number, restitution:Number):b2Body
+		public static function createRect2(world:b2World, type:uint, pos:b2Vec2, size:b2Vec2, offset:b2Vec2, angle:Number, density:Number, friction:Number, restitution:Number, filterIndex:int = 0):b2Body
 		{
 			pos = convertVec2(pos);
 			size = convertVec2(size);
@@ -85,13 +85,14 @@ package org.easily.box2d
 			fixtureDef.friction = friction;
 			fixtureDef.restitution = restitution;
 			fixtureDef.shape = shapeDef;
+			fixtureDef.filter.groupIndex = filterIndex;
 			
 			var body:b2Body = world.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
 			return body;
 		}
 
-		public static function createPolygon(world:b2World, type:uint, pos:b2Vec2, vertices:Object, density:Number, friction:Number, restitution:Number):b2Body
+		public static function createPolygon(world:b2World, type:uint, pos:b2Vec2, vertices:Object, density:Number, friction:Number, restitution:Number, filterIndex:int = 0):b2Body
 		{
 			pos = convertVec2(pos);
 			var vertices_:Array = [];
@@ -112,13 +113,14 @@ package org.easily.box2d
 			fixtureDef.friction = friction;
 			fixtureDef.restitution = restitution;
 			fixtureDef.shape = shapeDef;
+			fixtureDef.filter.groupIndex = filterIndex;
 			
 			var body:b2Body = world.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
 			return body;
 		}
 
-		public static function createCircle(world:b2World, type:uint, pos:b2Vec2, radius:Number, density:Number, friction:Number, restitution:Number):b2Body
+		public static function createCircle(world:b2World, type:uint, pos:b2Vec2, radius:Number, density:Number, friction:Number, restitution:Number, filterIndex:int = 0):b2Body
 		{
 			pos = convertVec2(pos);
 			radius /= worldScale;
@@ -134,6 +136,7 @@ package org.easily.box2d
 			fixtureDef.friction = friction;
 			fixtureDef.restitution = restitution;
 			fixtureDef.shape = shapeDef;
+			fixtureDef.filter.groupIndex = filterIndex;
 			
 			var body:b2Body = world.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
