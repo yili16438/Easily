@@ -46,7 +46,7 @@ package org.easily.test.box2d
 			var radius:Number = 28;
 			var size:b2Vec2 = new b2Vec2(45, radius / 2);
 			
-			var legNum:Number = 3;
+			var legNum:Number = 4;
 			
 			var legW:Number = 50;
 			var legH:Number = 75;
@@ -57,14 +57,12 @@ package org.easily.test.box2d
 			var jointLen2:Number = 85;
 			
 			var bodyIndex:int = -1;
-			var leftIndex:int = -2;
-			var rightIndex:int = -3;
-			var legIndex:int = -4;
+			var legIndex:int = -2;
 			
 			//motor
 			var circle:b2Body = b2Utils.createCircle(world, b2Body.b2_dynamicBody, new b2Vec2, radius, density, friction, resititution, bodyIndex);
 			var rect:b2Body = b2Utils.createRect(world, b2Body.b2_dynamicBody, new b2Vec2, size, density, friction, resititution, bodyIndex);
-			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, -5, 1000);
+			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, -3, 1000);
 			center = circle;
 			bodies.push(rect);
 			
