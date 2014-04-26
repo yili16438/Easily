@@ -40,7 +40,7 @@ package org.easily.test.box2d
 		private function createWalker():void
 		{
 			var density:Number = 2;
-			var friction:Number = 0.8;
+			var friction:Number = 0.5;
 			var resititution:Number = 0.3;
 			
 			var radius:Number = 28;
@@ -64,7 +64,7 @@ package org.easily.test.box2d
 			//motor
 			var circle:b2Body = b2Utils.createCircle(world, b2Body.b2_dynamicBody, new b2Vec2, radius, density, friction, resititution, bodyIndex);
 			var rect:b2Body = b2Utils.createRect(world, b2Body.b2_dynamicBody, new b2Vec2, size, density, friction, resititution, bodyIndex);
-			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, -3, 1000);
+			b2Utils.revoluteJoint(world, circle, rect, new b2Vec2, new b2Vec2, true, -5, 1000);
 			center = circle;
 			bodies.push(rect);
 			
