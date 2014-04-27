@@ -53,8 +53,8 @@ package org.easily.test.box2d
 			var legLen1:Number = 55;
 			var legLen2:Number = 55;
 			
-			var jointLen1:Number = 88;
-			var jointLen2:Number = 85;
+			var jointLen1:Number = 90;
+			var jointLen2:Number = 88;
 			
 			var bodyIndex:int = -1;
 			var legIndex:int = -2;
