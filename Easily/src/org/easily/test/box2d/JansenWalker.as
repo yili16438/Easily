@@ -1,5 +1,7 @@
 package org.easily.test.box2d
 {
+	import Box2D.Common.Math.b2Mat22;
+	import Box2D.Common.Math.b2Math;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2FilterData;
@@ -46,15 +48,15 @@ package org.easily.test.box2d
 			var radius:Number = 28;
 			var size:b2Vec2 = new b2Vec2(45, radius / 2);
 			
-			var legNum:Number = 4;
+			var legNum:Number = 3;
 			
 			var legW:Number = 50;
 			var legH:Number = 75;
 			var legLen1:Number = 55;
 			var legLen2:Number = 55;
 			
-			var jointLen1:Number = 90;
-			var jointLen2:Number = 88;
+			var jointLen1:Number = 88;
+			var jointLen2:Number = 85;
 			
 			var bodyIndex:int = -1;
 			var legIndex:int = -2;
@@ -68,12 +70,12 @@ package org.easily.test.box2d
 			
 			//legs
 			var average:Number = 2 * Math.PI / legNum;
-			var anchor:b2Vec2, pos:b2Vec2 = circle.GetWorldPoint(new b2Vec2);
-			pos.Add(new b2Vec2(0, -radius * 2 / 3));
+			var anchor:b2Vec2, oriAnchor:b2Vec2 = new b2Vec2(radius * 2 / 3, 0);
+			var mat22:b2Mat22 = new b2Mat22();
 			for (var i:int = 0; i < legNum; i++)
 			{
-				circle.SetAngle(i * average);
-				anchor = circle.GetLocalPoint(pos);
+				mat22.Set(i * average);
+				anchor = b2Math.MulMV(mat22, oriAnchor);
 				leftLeg();
 				rightLeg();
 			}
