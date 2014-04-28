@@ -8,7 +8,11 @@ package org.easily.test.box2d
 	import Box2D.Dynamics.b2World;
 	
 	import org.easily.box2d.b2Utils;
-
+	
+	/**
+	 * box2d utils
+	 * @author Easily
+	 */
 	public class JansenWalker
 	{
 		private var world:b2World;
@@ -49,7 +53,7 @@ package org.easily.test.box2d
 			var radius:Number = 28;
 			var size:b2Vec2 = new b2Vec2(45, radius / 2);
 			
-			var legNum:Number = 3;
+			var legNum:Number = 4;
 			
 			var legW:Number = 50;
 			var legH:Number = 75;
