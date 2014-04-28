@@ -75,7 +75,7 @@ package org.easily.test.box2d
 			
 			//legs
 			var average:Number = 2 * Math.PI / legNum;
-			var anchor:b2Vec2, oriAnchor:b2Vec2 = new b2Vec2(radius * 2 / 3, 0);
+			var anchor:b2Vec2, first:b2Vec2 = new b2Vec2(radius * 2 / 3, 0);
 			var m:b2Mat22 = new b2Mat22();
 			
 			var leftm:b2Mat22 = new b2Mat22();
@@ -85,7 +85,7 @@ package org.easily.test.box2d
 			for (var i:int = 0; i < legNum; i++)
 			{
 				m.Set(i * average);
-				anchor = b2Math.MulMV(m, oriAnchor);
+				anchor = b2Math.MulMV(m, first);
 				createLeg(false, leftm);
 				createLeg(true, rightm);
 			}
