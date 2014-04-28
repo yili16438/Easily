@@ -17,11 +17,24 @@ package org.easily.test.box2d
 		{
 			super();
 			
+			
+			if (!stage)
+			{
+				addEventListener(Event.ADDED_TO_STAGE, createWorld);
+			}
+			else
+			{
+				createWorld(null);
+			}
+		}
+		
+		private function createWorld(event:Event):void
+		{
 			var sleep:Boolean = true;
 			var gravity:b2Vec2 = new b2Vec2(0, 9.81);
 			world = new b2World(gravity, sleep);
 			
-			b2Utils.createWall(world, 640, 480, 5, 2, 0.3, 0.5);
+			b2Utils.createWall(world, stage.stageWidth, stage.stageHeight, 5, 2, 0.3, 0.5);
 			b2Utils.mouseJoint(stage, world);
 			b2Utils.createDebug(this, world, b2DebugDraw.e_jointBit | b2DebugDraw.e_shapeBit, 0.5);
 			
